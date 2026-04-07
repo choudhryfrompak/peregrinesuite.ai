@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== FONTS - Mazzard H (from Framer CDN) ===== */
+@font-face { font-family: "Mazzard H"; src: url("https://framerusercontent.com/assets/mrKf7AbibQn8HKrJBAElCsePc.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Mazzard H"; src: url("https://framerusercontent.com/assets/G0cbc1Lopi2LZD9VfSQZWXG5is.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Mazzard H"; src: url("https://framerusercontent.com/assets/Fy7HoV5wXAqze00ogbIJxekkM.woff2") format("woff2"); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: "Mazzard H"; src: url("https://framerusercontent.com/assets/SXLSKgtYjkazFlJq95DyooaPrqc.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Mazzard H"; src: url("https://framerusercontent.com/assets/3UDzjfp65BkHucjpl3SnQby3a6s.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Mazzard H"; src: url("https://framerusercontent.com/assets/gNKxK9i09LBuF2SeY9zzsvy0d4.woff2") format("woff2"); font-weight: 800; font-display: swap; }
+
+/* ===== BASE ===== */
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  overflow-x: hidden;
+  font-family: "Mazzard H", "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #fff;
+}
+
+/* ===== SCROLL FADE-IN ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== FLOATING ANIMATION (hero image) ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.animate-float { animation: float 4s ease-in-out infinite; }
+
+/* ===== MARQUEE (integrations) ===== */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 30s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ===== BUTTON GLOW ===== */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.btn-glow:hover {
+  transform: scale(1.04);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+}
+.btn-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+.btn-glow:hover::after { transform: translateX(100%); }
+
+/* ===== RESPONSIVE: mobile hero ===== */
+@media (max-width: 809px) {
+  .hero-container { padding: 57px 13px !important; height: auto !important; min-height: auto !important; flex-direction: column !important; }
+  .hero-inner { flex-direction: column !important; }
+  .hero-text-box { width: 100% !important; height: auto !important; position: relative !important; }
+  .hero-text-box > * { position: relative !important; top: auto !important; bottom: auto !important; left: auto !important; width: 100% !important; }
+  .hero-image { width: 247px !important; height: 247px !important; }
+  .hero-left { gap: 18px !important; }
+  .trusted-row { flex-wrap: wrap !important; gap: 40px !important; padding: 12px 20px !important; }
+  .tabs-panel { flex-direction: column !important; width: 100% !important; }
+  .tabs-left { width: 100% !important; }
+  .tabs-right { width: 100% !important; }
+  .cta-section { padding: 30px !important; flex-direction: column !important; align-items: center !important; gap: 18px !important; }
+  .cta-inner { flex-direction: column !important; align-items: center !important; }
+  .cta-cal { width: 360px !important; max-width: 100% !important; height: 756px !important; }
+  .blogs-section { padding: 40px 80px !important; }
+  .blogs-grid { display: flex !important; flex-direction: column !important; align-items: center !important; }
+  .blog-image-box { width: 314px !important; height: 209px !important; }
+}
+
+@media (min-width: 810px) and (max-width: 1199px) {
+  .hero-container { height: 96.28vh !important; padding: 120px 0 0 !important; flex-direction: column !important; }
+  .hero-inner { flex-direction: column !important; }
+  .hero-image { width: 216px !important; height: 216px !important; }
+  .tabs-panel { width: 100% !important; }
+  .cta-cal { width: 601px !important; }
+}
