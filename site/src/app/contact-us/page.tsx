@@ -7,44 +7,43 @@ const F = '"Mazzard H", sans-serif';
 
 function initCal(namespace: string, selector: string) {
   const w = window as any;
-  if (!w.Cal) {
-    w.Cal = function (...args: any[]) {
-      (w.Cal.q = w.Cal.q || []).push(args);
+  (function (C: any, A: string, L: string) {
+    let p = function (a: any, ar: any) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api: any = function () { p(api, arguments); };
+        const ns = ar[1];
+        api.q = api.q || [];
+        if (typeof ns === "string") {
+          cal.ns[ns] = cal.ns[ns] || api;
+          p(cal.ns[ns], ar);
+          p(cal, ["initNamespace", ns]);
+        } else p(cal, ar);
+        return;
+      }
+      p(cal, ar);
     };
-    w.Cal.ns = {};
-    w.Cal.loaded = false;
-  }
-  if (!w.Cal.loaded) {
-    const s = document.createElement("script");
-    s.src = "https://app.cal.com/embed/embed.js";
-    s.async = true;
-    document.head.appendChild(s);
-    w.Cal.loaded = true;
-  }
-
-  // Wait for script to load then init
-  const tryInit = () => {
-    if (w.Cal && typeof w.Cal === "function") {
-      w.Cal("init", namespace, { origin: "https://app.cal.com" });
-      setTimeout(() => {
-        if (w.Cal.ns && w.Cal.ns[namespace]) {
-          w.Cal.ns[namespace]("inline", {
-            elementOrSelector: selector,
-            calLink: "peregrine-suite-ai/30min",
-            layout: "month_view",
-          });
-          w.Cal.ns[namespace]("ui", {
-            theme: "light",
-            hideEventTypeDetails: false,
-            layout: "month_view",
-          });
-        }
-      }, 100);
-    } else {
-      setTimeout(tryInit, 200);
-    }
-  };
-  tryInit();
+  })(w, "https://app.cal.com/embed/embed.js", "init");
+  w.Cal("init", namespace, { origin: "https://app.cal.com" });
+  w.Cal.ns[namespace]("inline", {
+    elementOrSelector: selector,
+    calLink: "peregrine-suite-ai/30min",
+    layout: "month_view",
+  });
+  w.Cal.ns[namespace]("ui", {
+    theme: "light",
+    hideEventTypeDetails: false,
+    layout: "month_view",
+  });
 }
 
 export default function ContactUsPage() {

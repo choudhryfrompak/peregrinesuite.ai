@@ -80,14 +80,43 @@ export default function Home() {
   const [tab, setTab] = useState(0);
 
   useEffect(() => {
-    (function (C: any, A: string, L: string) {
-      let p = (a: any, ar: any) => a.q.push(ar);
-      let d = C.document;
-      C.Cal = C.Cal || function () { let cal = C.Cal, ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api: any = function () { p(api, arguments); }; const ns = ar[1]; api.q = api.q || []; if (typeof ns === "string") { cal.ns[ns] = cal.ns[ns] || api; p(cal.ns[ns], ar); p(cal, ["initNamespace", ns]); } else p(cal, ar); return; } p(cal, ar); };
-    })(window, "https://app.cal.com/embed/embed.js", "init");
-    (window as any).Cal("init", "30min", { origin: "https://app.cal.com" });
-    (window as any).Cal.ns["30min"]("inline", { elementOrSelector: "#my-cal-inline-30min", calLink: "peregrine-suite-ai/30min", layout: "month_view" });
-    (window as any).Cal.ns["30min"]("ui", { theme: "light", hideEventTypeDetails: false, layout: "month_view" });
+    const w = window as any;
+    const initCal = () => {
+      (function (C: any, A: string, L: string) {
+        let p = function (a: any, ar: any) { a.q.push(ar); };
+        let d = C.document;
+        C.Cal = C.Cal || function () {
+          let cal = C.Cal;
+          let ar = arguments;
+          if (!cal.loaded) {
+            cal.ns = {};
+            cal.q = cal.q || [];
+            d.head.appendChild(d.createElement("script")).src = A;
+            cal.loaded = true;
+          }
+          if (ar[0] === L) {
+            const api: any = function () { p(api, arguments); };
+            const ns = ar[1];
+            api.q = api.q || [];
+            if (typeof ns === "string") {
+              cal.ns[ns] = cal.ns[ns] || api;
+              p(cal.ns[ns], ar);
+              p(cal, ["initNamespace", ns]);
+            } else p(cal, ar);
+            return;
+          }
+          p(cal, ar);
+        };
+      })(w, "https://app.cal.com/embed/embed.js", "init");
+      w.Cal("init", "30min", { origin: "https://app.cal.com" });
+      w.Cal.ns["30min"]("inline", {
+        elementOrSelector: "#my-cal-inline-30min",
+        calLink: "peregrine-suite-ai/30min",
+        layout: "month_view",
+      });
+      w.Cal.ns["30min"]("ui", { theme: "light", hideEventTypeDetails: false, layout: "month_view" });
+    };
+    initCal();
   }, []);
 
   return (
