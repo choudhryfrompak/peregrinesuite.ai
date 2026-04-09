@@ -56,36 +56,36 @@ Marketing website for **Peregrine Suite AI** — an AI-powered agent building pl
 
 ```
 peregrine/
-└── site/
-    ├── public/
-    │   ├── fonts/                  # Mazzard H woff2 (weights 400–800)
-    │   └── images/
-    │       ├── concierge/          # Concierge agent page assets
-    │       └── framer/             # Practice suite page assets
-    │
-    ├── src/
-    │   ├── app/
-    │   │   ├── layout.tsx          # Root layout (Navbar + Footer wrapper)
-    │   │   ├── globals.css         # Global styles, animations, responsive rules
-    │   │   ├── page.tsx            # Home
-    │   │   ├── agents/             # /agents
-    │   │   ├── blog/               # /blog + individual posts
-    │   │   ├── case-studies/       # /case-studies
-    │   │   ├── concierge-agent/    # /concierge-agent
-    │   │   ├── contact-us/         # /contact-us
-    │   │   └── practice-suite/     # /practice-suite
-    │   │
-    │   └── components/
-    │       ├── Navbar.tsx           # Sticky navbar with hover dropdown
-    │       ├── Footer.tsx           # Site footer
-    │       └── ScrollFadeIn.tsx     # Scroll-triggered fade-in animation
-    │
-    ├── Dockerfile                   # Multi-stage Docker build
-    ├── .dockerignore
-    ├── next.config.mjs
-    ├── tailwind.config.ts
-    ├── tsconfig.json
-    └── package.json
+├── public/
+│   ├── fonts/                  # Mazzard H woff2 (weights 400–800)
+│   └── images/
+│       ├── concierge/          # Concierge agent page assets
+│       └── framer/             # Practice suite page assets
+│
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx          # Root layout (Navbar + Footer wrapper)
+│   │   ├── globals.css         # Global styles, animations, responsive rules
+│   │   ├── page.tsx            # Home
+│   │   ├── agents/             # /agents
+│   │   ├── blog/               # /blog + individual posts
+│   │   ├── case-studies/       # /case-studies
+│   │   ├── concierge-agent/    # /concierge-agent
+│   │   ├── contact-us/         # /contact-us
+│   │   └── practice-suite/     # /practice-suite
+│   │
+│   └── components/
+│       ├── Navbar.tsx           # Sticky navbar with hover dropdown
+│       ├── Footer.tsx           # Site footer
+│       └── ScrollFadeIn.tsx     # Scroll-triggered fade-in animation
+│
+├── Dockerfile                   # Multi-stage Docker build
+├── .dockerignore
+├── nginx.conf                   # Nginx config for production
+├── next.config.mjs
+├── tailwind.config.ts
+├── tsconfig.json
+└── package.json
 ```
 
 ---
@@ -100,7 +100,6 @@ peregrine/
 ### Installation
 
 ```bash
-cd site
 npm install
 ```
 
@@ -136,7 +135,7 @@ The included Dockerfile uses a **2-stage build** optimized for Cloud Run:
 
 ```bash
 # Build container image
-gcloud builds submit --tag gcr.io/YOUR_PROJECT/peregrine-site ./site
+gcloud builds submit --tag gcr.io/YOUR_PROJECT/peregrine-site
 
 # Deploy to Cloud Run
 gcloud run deploy peregrine-site \
@@ -149,7 +148,6 @@ gcloud run deploy peregrine-site \
 ### Local Docker
 
 ```bash
-cd site
 docker build -t peregrine-site .
 docker run -p 8080:8080 peregrine-site
 ```
