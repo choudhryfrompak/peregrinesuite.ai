@@ -63,7 +63,7 @@ export default function ContactUsPage() {
         className="absolute inset-0 pointer-events-none"
         style={{ background: "linear-gradient(234deg, rgba(59,130,246,0.2) -13%, #fff 40%)" }}
       />
-      <div className="relative" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 60px" }}>
+      <div className="relative px-4 md:px-10 lg:px-[60px]" style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div className="flex flex-col lg:flex-row items-start" style={{ gap: 10 }}>
           {/* Left text */}
           <ScrollFadeIn>
@@ -82,8 +82,8 @@ export default function ContactUsPage() {
           <ScrollFadeIn delay={200}>
             <div
               id="cal-contact-page"
-              className="shrink-0 overflow-auto bg-white rounded-lg border border-gray-200"
-              style={{ width: 650, maxWidth: "100%", height: 700 }}
+              className="w-full lg:w-[650px] overflow-auto bg-white rounded-lg border border-gray-200"
+              style={{ maxWidth: "100%", minHeight: 500, height: 700 }}
             />
           </ScrollFadeIn>
         </div>

@@ -59,7 +59,7 @@ body {
 /* ===== RESPONSIVE: mobile hero ===== */
 @media (max-width: 809px) {
   .hero-container { padding: 57px 13px !important; height: auto !important; min-height: auto !important; flex-direction: column !important; }
-  .hero-inner { flex-direction: column !important; }
+  .hero-inner { flex-direction: column !important; padding: 20px 16px 0 16px !important; }
   .hero-text-box { width: 100% !important; height: auto !important; position: relative !important; }
   .hero-text-box > * { position: relative !important; top: auto !important; bottom: auto !important; left: auto !important; width: 100% !important; }
   .hero-image { width: 247px !important; height: 247px !important; }
@@ -68,15 +68,15 @@ body {
   .tabs-panel { flex-direction: column !important; width: 100% !important; }
   .tabs-left { width: 100% !important; }
   .tabs-right { width: 100% !important; }
-  .cta-section { padding: 30px !important; flex-direction: column !important; align-items: center !important; gap: 18px !important; }
+  .cta-section { padding: 30px 16px !important; flex-direction: column !important; align-items: center !important; gap: 18px !important; }
   .cta-inner { flex-direction: column !important; align-items: center !important; }
   .cta-cal { width: 360px !important; max-width: 100% !important; height: 756px !important; }
-  .blogs-section { padding: 40px 80px !important; }
-  .blogs-grid { display: flex !important; flex-direction: column !important; align-items: center !important; }
-  .blog-image-box { width: 314px !important; height: 209px !important; }
-  .agents-row { flex-direction: column !important; }
+  .blogs-section { padding: 40px 16px !important; }
+  .blogs-grid { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 30px !important; }
+  .blog-image-box { width: 100% !important; max-width: 400px !important; height: auto !important; aspect-ratio: 467/283 !important; }
+  .agents-row { flex-direction: column !important; gap: 24px !important; }
   .deployments-grid { grid-template-columns: 1fr !important; }
-  .ps-row { flex-direction: column !important; }
+  .ps-row { flex-direction: column !important; text-align: center !important; }
   .ps-steps-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .ps-benefits-row { flex-direction: column !important; }
   .ps-benefits-card { width: 100% !important; }
@@ -84,14 +84,30 @@ body {
   .concierge-how-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .concierge-stats-grid { grid-template-columns: 1fr !important; }
   .concierge-industry-grid { grid-template-columns: 1fr !important; }
+  /* Contact page */
+  .contact-row { flex-direction: column !important; padding: 0 16px !important; }
+  .contact-cal { width: 100% !important; max-width: 400px !important; }
+  /* Navbar dropdown */
+  .nav-dropdown { width: 300px !important; max-width: 90vw !important; }
+  /* General section padding */
+  section { padding-left: 16px !important; padding-right: 16px !important; }
 }
 
 @media (min-width: 810px) and (max-width: 1199px) {
-  .hero-container { height: 96.28vh !important; padding: 120px 0 0 !important; flex-direction: column !important; }
-  .hero-inner { flex-direction: column !important; }
+  .hero-container { height: auto !important; min-height: 70vh !important; padding: 40px 24px 0 !important; flex-direction: column !important; }
+  .hero-inner { flex-direction: column !important; padding: 20px 24px 0 24px !important; }
   .hero-image { width: 216px !important; height: 216px !important; }
-  .tabs-panel { width: 100% !important; }
-  .cta-cal { width: 601px !important; }
+  .tabs-panel { width: 100% !important; flex-direction: column !important; }
+  .tabs-left { width: 100% !important; }
+  .tabs-right { width: 100% !important; }
+  .cta-section { padding: 60px 40px !important; }
+  .cta-cal { width: 601px !important; max-width: 100% !important; }
+  .blogs-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .concierge-how-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .concierge-industry-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .ps-steps-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .ps-row { flex-direction: column !important; text-align: center !important; }
+  .agents-row { gap: 32px !important; }
 }
 
 /* ===== GRADIENT TEXT (used on subpages) ===== */

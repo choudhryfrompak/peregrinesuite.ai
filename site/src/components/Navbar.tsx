@@ -105,7 +105,7 @@ export default function Navbar() {
                       border: "1px solid rgb(0,153,255)",
                       borderRadius: 8,
                       padding: 15,
-                      width: 365,
+                      width: 365, maxWidth: "90vw",
                       boxShadow: "0 8px 30px rgba(0,0,0,0.06)",
                     }}
                   >

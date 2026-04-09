@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer style={{ backgroundColor: "rgb(247, 250, 255)", borderTopLeftRadius: "20px", borderTopRightRadius: "20px", padding: "60px", fontFamily: '"Mazzard H", sans-serif' }}>
+    <footer className="px-4 py-10 md:px-10 lg:p-[60px]" style={{ backgroundColor: "rgb(247, 250, 255)", borderTopLeftRadius: "20px", borderTopRightRadius: "20px", fontFamily: '"Mazzard H", sans-serif' }}>
       <div className="mx-auto" style={{ maxWidth: 1200 }}>
         {/* Top section */}
         <div className="flex flex-col md:flex-row justify-between gap-10">
