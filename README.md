@@ -125,13 +125,12 @@ npm start
 
 ### Google Cloud Run
 
-The included Dockerfile uses a **3-stage build** optimized for Cloud Run:
+The included Dockerfile uses a **2-stage build** optimized for Cloud Run:
 
 | Stage | Purpose | Details |
 |-------|---------|---------|
-| `deps` | Install dependencies | Cached layer for faster rebuilds |
-| `builder` | Build application | Runs `next build` with standalone output |
-| `runner` | Production image | Minimal Alpine (~50MB), non-root user, port 8080 |
+| `builder` | Build application | Node 18 Alpine, runs `next build` with static export |
+| `runner` | Serve static files | nginx:alpine (~50MB total image) on port 8080 |
 
 **Build and deploy:**
 

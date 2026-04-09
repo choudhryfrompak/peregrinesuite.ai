@@ -1,61 +1,14 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import ScrollFadeIn from "@/components/ScrollFadeIn";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description: "Talk to our expert — get personalized guidance and clear solutions for your needs.",
+};
 
 const F = '"Mazzard H", sans-serif';
 
-function initCal(namespace: string, selector: string) {
-  const w = window as any;
-  (function (C: any, A: string, L: string) {
-    let p = function (a: any, ar: any) { a.q.push(ar); };
-    let d = C.document;
-    C.Cal = C.Cal || function () {
-      let cal = C.Cal;
-      let ar = arguments;
-      if (!cal.loaded) {
-        cal.ns = {};
-        cal.q = cal.q || [];
-        d.head.appendChild(d.createElement("script")).src = A;
-        cal.loaded = true;
-      }
-      if (ar[0] === L) {
-        const api: any = function () { p(api, arguments); };
-        const ns = ar[1];
-        api.q = api.q || [];
-        if (typeof ns === "string") {
-          cal.ns[ns] = cal.ns[ns] || api;
-          p(cal.ns[ns], ar);
-          p(cal, ["initNamespace", ns]);
-        } else p(cal, ar);
-        return;
-      }
-      p(cal, ar);
-    };
-  })(w, "https://app.cal.com/embed/embed.js", "init");
-  w.Cal("init", namespace, { origin: "https://app.cal.com" });
-  w.Cal.ns[namespace]("inline", {
-    elementOrSelector: selector,
-    calLink: "peregrine-suite-ai/30min",
-    layout: "month_view",
-  });
-  w.Cal.ns[namespace]("ui", {
-    theme: "light",
-    hideEventTypeDetails: false,
-    layout: "month_view",
-  });
-}
-
 export default function ContactUsPage() {
-  const initialized = useRef(false);
-
-  useEffect(() => {
-    if (!initialized.current) {
-      initialized.current = true;
-      initCal("contact-page", "#cal-contact-page");
-    }
-  }, []);
-
   return (
     <section className="relative overflow-hidden" style={{ padding: "60px 0", minHeight: "80vh" }}>
       <div
@@ -79,10 +32,11 @@ export default function ContactUsPage() {
 
           {/* Cal.com embed */}
           <ScrollFadeIn delay={200}>
-            <div
-              id="cal-contact-page"
-              className="w-full lg:w-[650px] overflow-auto bg-white rounded-lg border border-gray-200"
-              style={{ maxWidth: "100%", minHeight: 500, height: 700 }}
+            <iframe
+              src="https://cal.com/peregrine-suite-ai/30min?embed=true&layout=month_view&theme=light"
+              className="w-full lg:w-[650px] bg-white rounded-lg"
+              style={{ maxWidth: "100%", minHeight: 500, height: 700, border: "none" }}
+              allow="payment"
             />
           </ScrollFadeIn>
         </div>
