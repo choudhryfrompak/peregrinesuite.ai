@@ -118,14 +118,29 @@ export default function PracticeSuitePage() {
       >
         <ScrollFadeIn>
           <div style={{ display: "flex", justifyContent: "center", marginBottom: 30 }}>
-            {/* Static Hero Icon Container from User HTML */}
-            <div style={{ position: "relative", width: 176, height: 176, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <Image 
-                src="/images/framer/hero-static-icon.svg" 
-                alt="Static Hero Icon" 
-                fill 
-                style={{ objectFit: "contain" }} 
-              />
+            {/* Lightning bolt with circular rotating text */}
+            <div style={{ position: "relative", width: 220, height: 220, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              {/* Rotating circular text */}
+              <svg className="circular-text-anim" viewBox="0 0 220 220" style={{ position: "absolute", width: "100%", height: "100%" }}>
+                <defs>
+                  <path id="heroCirclePath" d="M 110,110 m -90,0 a 90,90 0 1,1 180,0 a 90,90 0 1,1 -180,0" />
+                </defs>
+                <text style={{ fontFamily: F, fontSize: 15, fontWeight: 500, fill: "rgba(0,0,0,0.25)", letterSpacing: "5px" }}>
+                  <textPath href="#heroCirclePath" startOffset="0%">
+                    Practice Suite- Bring Automation in Accounting Firm-
+                  </textPath>
+                </text>
+              </svg>
+              {/* Center lightning bolt */}
+              <svg width="55" height="68" viewBox="0 0 24 24" fill="none" style={{ position: "relative", zIndex: 1 }}>
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#heroBoltGrad)" stroke="url(#heroBoltGrad)" strokeWidth="0.5" strokeLinejoin="round" />
+                <defs>
+                  <linearGradient id="heroBoltGrad" x1="3" y1="2" x2="21" y2="22" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="rgb(139,92,246)" />
+                    <stop offset="100%" stopColor="rgb(59,130,246)" />
+                  </linearGradient>
+                </defs>
+              </svg>
             </div>
           </div>
 
@@ -467,14 +482,27 @@ export default function PracticeSuitePage() {
                 </Link>
               </div>
 
-              {/* Static Hero Icon */}
+              {/* Lightning bolt with circular rotating text */}
               <div style={{ position: "relative", width: 280, height: 280, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <Image 
-                  src="/images/framer/hero-static-icon.svg" 
-                  alt="Practice Suite Automation Icon" 
-                  fill 
-                  style={{ objectFit: "contain", opacity: 0.8 }} 
-                />
+                <svg className="circular-text-anim" viewBox="0 0 280 280" style={{ position: "absolute", width: "100%", height: "100%" }}>
+                  <defs>
+                    <path id="ctaCirclePath" d="M 140,140 m -110,0 a 110,110 0 1,1 220,0 a 110,110 0 1,1 -220,0" />
+                  </defs>
+                  <text style={{ fontFamily: F, fontSize: 18, fontWeight: 500, fill: "rgba(0,0,0,0.25)", letterSpacing: "6px" }}>
+                    <textPath href="#ctaCirclePath" startOffset="0%">
+                      Practice Suite- Bring Automation in Accounting Firm-
+                    </textPath>
+                  </text>
+                </svg>
+                <svg width="65" height="80" viewBox="0 0 24 24" fill="none" style={{ position: "relative", zIndex: 1 }}>
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#ctaBoltGrad)" stroke="url(#ctaBoltGrad)" strokeWidth="0.5" strokeLinejoin="round" />
+                  <defs>
+                    <linearGradient id="ctaBoltGrad" x1="3" y1="2" x2="21" y2="22" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stopColor="rgb(139,92,246)" />
+                      <stop offset="100%" stopColor="rgb(59,130,246)" />
+                    </linearGradient>
+                  </defs>
+                </svg>
               </div>
             </div>
           </ScrollFadeIn>

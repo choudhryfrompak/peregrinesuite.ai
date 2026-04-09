@@ -40,7 +40,7 @@ export default function Navbar() {
   const [showSolutions, setShowSolutions] = useState(false);
 
   return (
-    <nav style={{ position: "sticky", top: 20, left: 0, right: 0, zIndex: 50, padding: "0 10px", marginTop: 20, marginBottom: 40 }}>
+    <nav style={{ position: "sticky", top: 20, left: 0, right: 0, zIndex: 50, padding: "0 10px", marginTop: 20, marginBottom: 10 }}>
       <div className="mx-auto" style={{ width: 1200, maxWidth: "100%" }}>
         <div
           className="flex items-center justify-between"

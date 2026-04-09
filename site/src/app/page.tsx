@@ -115,7 +115,7 @@ export default function Home() {
           </svg>
         </div>
 
-        <div className="relative flex flex-row items-center justify-center hero-inner" style={{ padding: "60px 0 0 60px", minHeight: "81.5vh", maxWidth: 1480, margin: "0 auto", overflow: "hidden" }}>
+        <div className="relative flex flex-row items-center justify-center hero-inner" style={{ padding: "20px 0 0 60px", minHeight: "81.5vh", maxWidth: 1480, margin: "0 auto", overflow: "hidden" }}>
           {/* Left column */}
           <div className="hero-left flex flex-col" style={{ gap: 53 }}>
             {/* Absolutely-positioned text container: 688 × 327 */}
@@ -299,7 +299,7 @@ export default function Home() {
             {blogs.map((b, i) => (
               <ScrollFadeIn key={i} delay={i * 100}>
                 <Link href={b.href} className="flex flex-col" style={{ gap: 30, textDecoration: "none" }}>
-                  <div className="blog-image-box overflow-hidden" style={{ borderRadius: 12, border: "1px solid rgb(221,225,240)", width: "100%", maxWidth: 467, height: 283 }}>
+                  <div className="blog-image-box overflow-hidden" style={{ borderRadius: 12, border: "1px solid rgb(221,225,240)", width: "100%", aspectRatio: "467/283" }}>
                     <Image src={b.image} alt={b.title} width={467} height={283} className="w-full h-full object-cover" />
                   </div>
                   <div>

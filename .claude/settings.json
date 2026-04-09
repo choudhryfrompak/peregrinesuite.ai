@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(npm install:*)",
+      "Bash(npx next:*)",
+      "Bash(node node_modules/next/dist/bin/next build)",
+      "Bash(node node_modules/next/dist/bin/next build --webpack)",
+      "Bash(npm --version)",
+      "Bash(rm -rf .next)",
+      "Bash(rm -rf package-lock.json)",
+      "Bash(cmd //c \"rmdir /s /q node_modules\")"
+    ]
+  }
+}

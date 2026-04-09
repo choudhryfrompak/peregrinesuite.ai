@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.peregrinesuite.ai)",
+      "Bash(curl -sL \"https://www.peregrinesuite.ai/\")",
+      "Bash(curl -sL -o favicon-light.svg \"https://framerusercontent.com/images/PmPZQTcoWoItgDvo3pcb2pP1xo.svg\")",
+      "Bash(curl -sL -o favicon-dark.svg \"https://framerusercontent.com/images/VCrzJR3hmUhRBoTMFQLzekyAFrI.svg\")",
+      "Bash(curl -sL -o og-image.jpg \"https://framerusercontent.com/images/poBS4r52uRXxSqB1Ncl56aF6uc8.jpg\")",
+      "Bash(curl -sL -o hero-image.png \"https://framerusercontent.com/images/khYdOfG3EclIObJfIjyix6lihc.png?scale-down-to=1024\")",
+      "Bash(curl -sL -o logo.svg \"https://framerusercontent.com/images/vfIvVjq2OTjnp5qB4KjQeJSSUI.svg\")",
+      "Bash(curl -sL -o blog1.jpg \"https://framerusercontent.com/images/2VQJ58pDZ1pcHQPiElPfrK9toWM.jpg?scale-down-to=512\")",
+      "Bash(curl -sL -o blog2.jpg \"https://framerusercontent.com/images/7i9pRiRXvxKPA8aI8vfdqRYLX4s.jpg?scale-down-to=512\")",
+      "Bash(curl -sL -o blog3.jpg \"https://framerusercontent.com/images/G9C2JD5ATHvCdFRKpSAJuJdOO4.jpg?scale-down-to=512\")",
+      "Bash(curl -sL -o trusted-avatar.webp \"https://framerusercontent.com/images/0pW2O0sFElwh1GYz5frzbiwM.webp?width=300&height=300\")",
+      "Bash(curl -sL -o expert-avatar.png \"https://framerusercontent.com/images/vo8qfJAE0QNzA491dHu0MrOuemE.png?width=225&height=225\")",
+      "Bash(curl -sL -o integration1.svg \"https://framerusercontent.com/images/AWEMwmK8XQLmCxx6iNCxcTFm6zg.svg\")",
+      "Bash(curl -sL -o integration2.svg \"https://framerusercontent.com/images/AyngElw6Kw7h8qqyTSKyAemFsm0.svg\")",
+      "Bash(curl -sL -o integration3.svg \"https://framerusercontent.com/images/LA4sF2j2Ve4Hsi6z5EvEtwJDg5w.svg\")",
+      "Bash(curl -sL -o integration4.svg \"https://framerusercontent.com/images/wO9R8WOFb8u82sDdZlj4lMlLo.svg\")"
+    ]
+  }
+}
