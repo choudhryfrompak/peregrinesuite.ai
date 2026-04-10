@@ -215,7 +215,7 @@ export default function ComplianceAgentPage() {
                   <tr>
                     <th style={{ fontWeight: 600, fontSize: 20, color: "rgb(23,26,31)", textAlign: "left", padding: "16px 20px", borderBottom: "2px solid rgb(221,225,240)" }}>Metric</th>
                     <th style={{ fontWeight: 600, fontSize: 20, color: "rgb(23,26,31)", textAlign: "left", padding: "16px 20px", borderBottom: "2px solid rgb(221,225,240)" }}>Before Peregrine</th>
-                    <th style={{ fontWeight: 600, fontSize: 20, color: "rgb(59,130,246)", textAlign: "left", padding: "16px 20px", borderBottom: "2px solid rgb(59,130,246)", borderRadius: "8px 8px 0 0", border: "2px solid rgb(59,130,246)", borderBottom: "2px solid rgb(221,225,240)" }}>After Peregrine</th>
+                    <th style={{ fontWeight: 600, fontSize: 20, color: "rgb(59,130,246)", textAlign: "left", padding: "16px 20px", borderRadius: "8px 8px 0 0", border: "2px solid rgb(59,130,246)", borderBottom: "2px solid rgb(221,225,240)" }}>After Peregrine</th>
                   </tr>
                 </thead>
                 <tbody>
