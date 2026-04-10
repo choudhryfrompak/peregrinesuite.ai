@@ -15,19 +15,19 @@ const blogs = [
   {
     title: "Why accounting firms are primed to use AI agents in their work Copy",
     date: "Sep 5, 2025",
-    image: "/images/framer/blog1.jpg",
+    image: "/images/blog1.jpg",
     href: "/blog/why-accounting-firms-are-primed-to-use-ai-agents-in-their-work-copy",
   },
   {
     title: "The Age of AI Agents: Unlocking Transformative Potential Across Every Industry",
     date: "Sep 5, 2025",
-    image: "/images/framer/blog2.jpg",
+    image: "/images/blog2.jpg",
     href: "/blog/unlocking-transformative-potential-across-every-industry",
   },
   {
     title: "The Voice Revolution: How AI Voice Agents Are Transforming Human-Computer Interaction",
     date: "Sep 5, 2025",
-    image: "/images/framer/blog3.jpg",
+    image: "/images/blog3.jpg",
     href: "/blog/how-ai-voice-agents-are-transforming-human-computer-interaction",
   },
 ];
