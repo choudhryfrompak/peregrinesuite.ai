@@ -203,10 +203,31 @@ resource "aws_launch_template" "app" {
 
   vpc_security_group_ids = [aws_security_group.app.id]
 
+  # AL2023 default root volume is 8 GiB. With docker pulled images,
+  # build cache, and container logs, that fills up fast — we saw a
+  # bootstrap die on "needs 24MB more space on / filesystem" before
+  # docker was even installed. 20 GiB gp3 is ~$1.20/mo extra and
+  # gives a comfortable margin.
+  block_device_mappings {
+    device_name = "/dev/xvda"
+    ebs {
+      volume_size           = 20
+      volume_type           = "gp3"
+      delete_on_termination = true
+      encrypted             = true
+    }
+  }
+
   user_data = base64encode(<<-USERDATA
     #!/bin/bash
     set -euxo pipefail
-    dnf install -y docker amazon-cloudwatch-agent
+    # NOTE: do NOT install amazon-cloudwatch-agent here. It pulls ~200MB
+    # of files and historically tripped "needs 24MB more space on the /
+    # filesystem" on the AL2023 default 8 GiB root. The agent was never
+    # actually configured or started, so removing it has zero functional
+    # impact. The CloudWatch Log Group still exists if a user wants to
+    # wire up centralized logs later.
+    dnf install -y docker
     systemctl enable --now docker
 
     # ECR login (uses instance profile)
