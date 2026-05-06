@@ -9,7 +9,11 @@ provider "aws" {
   region = var.region
 }
 
-# ─── VPC + subnets (terraform-aws-modules/vpc) ────────────────────────
+# ─── VPC + subnets ────────────────────────────────────────────────────
+# No NAT gateway: ASG runs in public subnets with public IPs, which
+# saves ~2 min provisioning + ~$33/mo. The app SG still only accepts
+# port 8000 from the ALB SG, so reachability is unchanged. RDS lives
+# in private subnets and is only reachable from the app SG.
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 5.0"
@@ -18,8 +22,8 @@ module "vpc" {
   azs             = ["${var.region}a", "${var.region}b"]
   public_subnets  = ["10.0.1.0/24", "10.0.2.0/24"]
   private_subnets = ["10.0.11.0/24", "10.0.12.0/24"]
-  enable_nat_gateway = true
-  single_nat_gateway = true
+  enable_nat_gateway = false
+  map_public_ip_on_launch = true
 }
 
 # ─── AMI lookup (Amazon Linux 2023) ──────────────────────────────────
@@ -90,9 +94,17 @@ resource "aws_lb_target_group" "app" {
   port     = 8000
   protocol = "HTTP"
   vpc_id   = module.vpc.vpc_id
+  # Aggressive health check defaults so the ALB marks an instance healthy
+  # ~20s after registration instead of the default ~150s. interval=10s,
+  # healthy_threshold=2 → 2 × 10s. matcher includes 3xx because Next.js
+  # static export with trailingSlash:true returns 308 from `/` → `/`.
   health_check {
-    path    = "/health"
-    matcher = "200"
+    path                = "/"
+    matcher             = "200-399"
+    interval            = 10
+    timeout             = 5
+    healthy_threshold   = 2
+    unhealthy_threshold = 3
   }
 }
 
@@ -295,10 +307,16 @@ resource "aws_launch_template" "app" {
 
 resource "aws_autoscaling_group" "app" {
   name                = "nextjs-asg"
-  min_size            = 2
-  max_size            = 4
-  desired_capacity    = 2
-  vpc_zone_identifier = module.vpc.private_subnets
+  # Default to 1 instance to keep cold-deploys fast and cheap. Users can
+  # bump this via overrides for prod. With ALB health-check threshold of
+  # 2x10s, a single instance is reachable ~30s after user_data finishes.
+  min_size            = 1
+  max_size            = 2
+  desired_capacity    = 1
+  # Public subnets + map_public_ip_on_launch=true on the VPC means
+  # instances get a public IP and reach ECR/dnf via the IGW directly,
+  # no NAT gateway needed.
+  vpc_zone_identifier = module.vpc.public_subnets
   target_group_arns   = [aws_lb_target_group.app.arn]
   health_check_type   = "ELB"
 
