@@ -27,8 +27,15 @@ COPY . .
 RUN npm run build && test -d out
 
 # ---- Stage 2: Serve ----
-FROM --platform=linux/amd64 nginx:alpine
+FROM --platform=linux/amd64 nginx:stable-alpine
 COPY --from=builder /app/out /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Run nginx as non-root
+RUN mkdir -p /var/cache/nginx /var/run /var/log/nginx \
+    && chown -R nginx:nginx /var/cache/nginx /var/run /var/log/nginx \
+    && chmod -R 755 /var/cache/nginx /var/run /var/log/nginx
+
 EXPOSE 8080
+USER nginx
 CMD ["nginx", "-g", "daemon off;"]
