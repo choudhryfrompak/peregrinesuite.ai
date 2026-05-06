@@ -27,15 +27,22 @@ COPY . .
 RUN npm run build && test -d out
 
 # ---- Stage 2: Serve ----
-FROM --platform=linux/amd64 nginx:stable-alpine
+# Use nginxinc/nginx-unprivileged — the official non-root nginx image.
+# It already runs as the nginx user, has /tmp/nginx.pid configured,
+# /var/cache/nginx writable, and listens on 8080 by default. The
+# "stable-alpine" tag follows nginx's stable line.
+#
+# Why not nginx:stable-alpine + USER nginx: nginx:stable-alpine's master
+# process tries to write /run/nginx.pid, which the non-root nginx user
+# can't open. The previous Dockerfile chowned /var/run, but new pid
+# files created by nginx land in /run, not /var/run, and the directory
+# itself isn't writable by the nginx user → container exited immediately
+# with "open() /run/nginx.pid failed (13: Permission denied)".
+FROM --platform=linux/amd64 nginxinc/nginx-unprivileged:stable-alpine
+USER root
 COPY --from=builder /app/out /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Run nginx as non-root
-RUN mkdir -p /var/cache/nginx /var/run /var/log/nginx \
-    && chown -R nginx:nginx /var/cache/nginx /var/run /var/log/nginx \
-    && chmod -R 755 /var/cache/nginx /var/run /var/log/nginx
-
-EXPOSE 8080
+RUN chown -R nginx:nginx /usr/share/nginx/html /etc/nginx/conf.d/default.conf
 USER nginx
+EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
