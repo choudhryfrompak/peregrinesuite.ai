@@ -41,6 +41,11 @@ export default function Footer() {
                     Concierge Agent
                   </Link>
                 </li>
+                <li>
+                  <Link href="/invoice-forwarder/" className="text-sm text-[#4a4a4a] hover:text-gray-900 transition-colors leading-6 tracking-[-0.09px]">
+                    Invoice Forwarder
+                  </Link>
+                </li>
               </ul>
             </div>
 
@@ -57,6 +62,11 @@ export default function Footer() {
                 </li>
                 <li>
                   <span className="text-sm text-[#4a4a4a] leading-6 tracking-[-0.09px]">Privacy Policy</span>
+                </li>
+                <li>
+                  <Link href="/invoice-forwarder/privacy-policy/" className="text-sm text-[#4a4a4a] hover:text-gray-900 transition-colors leading-6 tracking-[-0.09px]">
+                    Invoice Forwarder Privacy
+                  </Link>
                 </li>
                 <li>
                   <span className="text-sm text-[#4a4a4a] leading-6 tracking-[-0.09px]">Terms of Service</span>
